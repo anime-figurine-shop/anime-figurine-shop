@@ -6,7 +6,10 @@ const protoLoader = require('@grpc/proto-loader');
 const path = require('path');
 
 const app = express();
-app.use(bodyParser.json());
+app.use((req, res, next) => {
+  if (req.path === '/graphql') return next();
+  bodyParser.json()(req, res, next);
+});
 
 // ─── gRPC Clients ───────────────────────────────────────────────
 const loadProto = (filename) => {
