@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package order;
+
+service OrderService {
+  rpc CreateOrder (CreateOrderRequest) returns (Order);
+  rpc GetOrder (OrderId) returns (Order);
+  rpc GetAllOrders (Empty) returns (OrderList);
+  rpc UpdateOrderStatus (UpdateStatusRequest) returns (Order);
+}
+
+message Empty {}
+
+message OrderId {
+  string id = 1;
+}
+
+message OrderItem {
+  string product_id = 1;
+  string product_name = 2;
+  int32 quantity = 3;
+  float price = 4;
+}
+
+message Order {
+  string id = 1;
+  string customer_name = 2;
+  string customer_email = 3;
+  repeated OrderItem items = 4;
+  float total = 5;
+  string status = 6;
+  string created_at = 7;
+}
+
+message CreateOrderRequest {
+  string customer_name = 1;
+  string customer_email = 2;
+  repeated OrderItem items = 3;
+}
+
+message UpdateStatusRequest {
+  string id = 1;
+  string status = 2;
+}
+
+message OrderList {
+  repeated Order orders = 1;
+}
