@@ -4,15 +4,20 @@ A full microservices application for an anime figurine e-commerce shop.
 
 ## Architecture
 Client (Postman)
-↓  REST + GraphQL
-API Gateway (port 3000)
-↓  gRPC
-┌─────────────────────────────────────────┐
-│ Product Service  → SQLite3 (port 50051) │
-│ Order Service    → SQLite3 (port 50052) │
-│ Notification Service → RxDB (port 50053)│
-└─────────────────────────────────────────┘
-↕  Kafka (localhost:9092)
+        ↓
+   REST + GraphQL
+        ↓
+  API Gateway (port 3000)
+        ↓
+      gRPC
+        ↓
+┌─────────────────────────────────────────────────┐
+│  Product Service     →  SQLite3  (port 50051)   │
+│  Order Service       →  SQLite3  (port 50052)   │
+│  Notification Service →  RxDB   (port 50053)   │
+└─────────────────────────────────────────────────┘
+        ↕
+   Kafka (localhost:9092)
 ## Technologies
 - **REST + GraphQL** — API Gateway (Express + Apollo Server)
 - **gRPC** — Internal communication between services
